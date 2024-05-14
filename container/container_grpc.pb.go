@@ -66,7 +66,7 @@ func (c *containerServiceClient) DeleteContainer(ctx context.Context, in *Delete
 }
 
 // ContainerServiceServer is the server API for ContainerService service.
-// All implementations must embed UnimplementedContainerServiceServer
+// All implementations should embed UnimplementedContainerServiceServer
 // for forward compatibility
 type ContainerServiceServer interface {
 	// Create a new container.
@@ -75,10 +75,9 @@ type ContainerServiceServer interface {
 	GetContainer(context.Context, *GetContainerRequest) (*Container, error)
 	// Delete a container by id.
 	DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error)
-	mustEmbedUnimplementedContainerServiceServer()
 }
 
-// UnimplementedContainerServiceServer must be embedded to have forward compatible implementations.
+// UnimplementedContainerServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedContainerServiceServer struct {
 }
 
@@ -91,7 +90,6 @@ func (UnimplementedContainerServiceServer) GetContainer(context.Context, *GetCon
 func (UnimplementedContainerServiceServer) DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteContainer not implemented")
 }
-func (UnimplementedContainerServiceServer) mustEmbedUnimplementedContainerServiceServer() {}
 
 // UnsafeContainerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to ContainerServiceServer will
