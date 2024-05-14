@@ -27,7 +27,7 @@ type ContainerServiceClient interface {
 	// Get a container by id.
 	GetContainer(ctx context.Context, in *GetContainerRequest, opts ...grpc.CallOption) (*Container, error)
 	// Delete a container by id.
-	DeleteContainer(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerReply, error)
+	DeleteContainer(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerResponse, error)
 }
 
 type containerServiceClient struct {
@@ -56,8 +56,8 @@ func (c *containerServiceClient) GetContainer(ctx context.Context, in *GetContai
 	return out, nil
 }
 
-func (c *containerServiceClient) DeleteContainer(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerReply, error) {
-	out := new(DeleteContainerReply)
+func (c *containerServiceClient) DeleteContainer(ctx context.Context, in *DeleteContainerRequest, opts ...grpc.CallOption) (*DeleteContainerResponse, error) {
+	out := new(DeleteContainerResponse)
 	err := c.cc.Invoke(ctx, "/cloud.container.v1.ContainerService/DeleteContainer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,7 +74,7 @@ type ContainerServiceServer interface {
 	// Get a container by id.
 	GetContainer(context.Context, *GetContainerRequest) (*Container, error)
 	// Delete a container by id.
-	DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerReply, error)
+	DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error)
 	mustEmbedUnimplementedContainerServiceServer()
 }
 
@@ -88,7 +88,7 @@ func (UnimplementedContainerServiceServer) CreateContainer(context.Context, *Cre
 func (UnimplementedContainerServiceServer) GetContainer(context.Context, *GetContainerRequest) (*Container, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetContainer not implemented")
 }
-func (UnimplementedContainerServiceServer) DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerReply, error) {
+func (UnimplementedContainerServiceServer) DeleteContainer(context.Context, *DeleteContainerRequest) (*DeleteContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteContainer not implemented")
 }
 func (UnimplementedContainerServiceServer) mustEmbedUnimplementedContainerServiceServer() {}

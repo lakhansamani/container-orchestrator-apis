@@ -11,7 +11,7 @@ service ContainerService {
     // Get a container by id.
     rpc GetContainer(GetContainerRequest) returns (Container) {}
     // Delete a container by id.
-    rpc DeleteContainer(DeleteContainerRequest) returns (DeleteContainerReply) {}
+    rpc DeleteContainer(DeleteContainerRequest) returns (DeleteContainerResponse) {}
 }
 
 // Container definition.
@@ -47,7 +47,7 @@ message CreateContainerRequest {
 }
 
 // The response message after deleting a container.
-message DeleteContainerReply {
+message DeleteContainerResponse {
     string id = 1;
     string status = 2;
 }
