@@ -17,10 +17,11 @@ service ContainerService {
 // Container definition.
 message Container {
     string id = 1;
-    string image = 2;
-    string port = 3;
-    repeated EnvVar env_vars = 4;
-    string status = 5;
+    string name = 2;
+    string image = 3;
+    string port = 4;
+    repeated EnvVar env_vars = 5;
+    string status = 6;
 }
 
 // Environment variable definition.
