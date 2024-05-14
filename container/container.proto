@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package cloud.container.v1;
+
+option go_package = "github.com/lakhansamani/container-orchestrator-apis/container";
+
+// The container service definition.
+service ContainerService {
+    // Create a new container.
+    rpc CreateContainer(CreateContainerRequest) returns (Container) {}
+    // Get a container by id.
+    rpc GetContainer(GetContainerRequest) returns (Container) {}
+    // Delete a container by id.
+    rpc DeleteContainer(DeleteContainerRequest) returns (DeleteContainerReply) {}
+}
+
+// Container definition.
+message Container {
+    string id = 1;
+    string image = 2;
+    string port = 3;
+    repeated EnvVar env_vars = 4;
+    string status = 5;
+}
+
+// Environment variable definition.
+message EnvVar {
+    string key = 1;
+    string value = 2;
+}
+
+// The request message containing the container's id.
+message GetContainerRequest {
+    string id = 1;
+}
+
+// The request to delete a container.
+message DeleteContainerRequest {
+    string id = 1;
+}
+
+// The request to create a container.
+message CreateContainerRequest {
+    string image = 1;
+    string port = 2;
+    repeated EnvVar env_vars = 3;
+}
+
+// The response message after deleting a container.
+message DeleteContainerReply {
+    string id = 1;
+    string status = 2;
+}
