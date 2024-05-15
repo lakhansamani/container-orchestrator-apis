@@ -22,6 +22,7 @@ message Container {
     string port = 4;
     repeated EnvVar env_vars = 5;
     string status = 6;
+    string container_id = 7;
 }
 
 // Environment variable definition.
