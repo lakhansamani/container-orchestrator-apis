@@ -44,7 +44,7 @@ message DeleteContainerRequest {
 // The request to create a container.
 message CreateContainerRequest {
     string image = 1;
-    string port = 2;
+    string name = 2;
     repeated EnvVar env_vars = 3;
 }
 
