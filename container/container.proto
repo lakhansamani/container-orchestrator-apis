@@ -37,6 +37,7 @@ message GetContainerRequest {
 // The request to delete a container.
 message DeleteContainerRequest {
     string container_id = 1;
+    string name = 2;
 }
 
 // The request to create a container.
@@ -48,6 +49,5 @@ message CreateContainerRequest {
 
 // The response message after deleting a container.
 message DeleteContainerResponse {
-    string id = 1;
-    string status = 2;
+    string message = 1;
 }
