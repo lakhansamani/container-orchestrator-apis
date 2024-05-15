@@ -16,13 +16,11 @@ service ContainerService {
 
 // Container definition.
 message Container {
-    string id = 1;
     string name = 2;
     string image = 3;
-    string port = 4;
-    repeated EnvVar env_vars = 5;
-    string status = 6;
-    string container_id = 7;
+    repeated EnvVar env_vars = 4;
+    string status = 5;
+    string container_id = 6;
 }
 
 // Environment variable definition.
@@ -33,12 +31,12 @@ message EnvVar {
 
 // The request message containing the container's id.
 message GetContainerRequest {
-    string id = 1;
+    string container_id = 1;
 }
 
 // The request to delete a container.
 message DeleteContainerRequest {
-    string id = 1;
+    string container_id = 1;
 }
 
 // The request to create a container.
